@@ -1,6 +1,3 @@
-# AskGPT-Document-Generator
-AskGPT Document Generator
-
 # AskGPT Document Generator
 
 AskGPT Document Generator is a Flask-based web application that utilizes OpenAI's GPT-3 API to generate question-and-answer pairs. The application allows users to submit a question, get a response from GPT-3, and generate a downloadable Word document (in `.docx` format) containing the questions and corresponding answers. The app also supports downloading chat logs as a Word document.
@@ -25,7 +22,7 @@ Make sure you have the following installed:
 
 1. Clone the repository:
 
-   git clone https://github.com/ikhan9985/askgpt-doc-generator.git
+   git clone https://github.com/ikhan9985/askgpt-document-generator.git
    cd askgpt-doc-generator
 
 Create a virtual environment (optional but recommended):
@@ -57,12 +54,7 @@ Endpoints
 / - Main page with the question form.
 /get_answer - Endpoint for processing the question and fetching the GPT-3 response.
 /download_answers - Endpoint for downloading the generated Word document with chat logs.
-Project Structure
 
-├── templates
-│   └── index.html         # HTML template for the web interface
-├── app.py                 # Main Flask application
-└── README.md              # Project readme file (this file)
 Template (HTML)
 The index.html file is located in the templates directory. You can modify the front-end as per your design needs.
 
