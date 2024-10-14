@@ -2,6 +2,9 @@
 
 AskGPT Document Generator is a Flask-based web application that utilizes OpenAI's GPT-3 API to generate question-and-answer pairs. The application allows users to submit a question, get a response from GPT-3, and generate a downloadable Word document (in `.docx` format) containing the questions and corresponding answers. The app also supports downloading chat logs as a Word document.
 
+![Chat with GPT](https://github.com/user-attachments/assets/223b11e0-5481-4609-a1c3-893e9c279a86)
+
+
 ## Features
 
 - Users can ask questions through a simple web interface.
