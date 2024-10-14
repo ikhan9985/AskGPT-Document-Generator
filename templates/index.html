@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with GPT-3</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<style>
+	.chat.friend .user-photo {
+        background-image: url({{ url_for('static', filename='images/b.jpg') }});
+    }
+
+    .chat.user .user-photo {
+        background-image: url({{ url_for('static', filename='images/a.png') }});
+    }
+	</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Chat with GPT-3</h1>
+        <div class="chatbox">
+            <div class="chatlogs" id="chatlogs">
+                <div class="chat friend">
+                    <div class="user-photo"></div>
+                    <p class="chat-message">Hi there! Ask me a question.</p>
+                </div>
+            </div>
+            <div class="chat-form">
+                <input type="text" id="question" placeholder="Ask a question...">
+                <button type="submit" id="submit">Send</button>
+            </div>
+			<div class="download-form">
+				<button type="submit" id="download">Download Answers</button>
+			</div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#submit').click(function() {
+                var question = $('#question').val();
+                $.ajax({
+                    url: '/get_answer',
+                    type: 'POST',
+                    data: {'question': question},
+                    success: function(response) {
+                        var answer = response.answer;
+                        var chatlogs = $('#chatlogs');
+                        var html = '<div class="chat user">';
+                        html += '<div class="user-photo"></div>';
+                        html += '<p class="chat-message">' + question + '</p></div>';
+                        html += '<div class="chat friend"><div class="user-photo"></div>';
+                        html += '<p class="chat-message">' + answer + '</p></div>';
+                        chatlogs.append(html);
+                        $('#question').val('');
+                    }
+                });	
+            });
+			
+			
+			$('#download').click(function() {
+				$.ajax({
+					url: '/download_answers',
+					type: 'POST',
+					data: {'chatlogs': $('#chatlogs').html()},
+					xhrFields: {
+						responseType: 'blob'
+					},
+					success: function(response) {
+						// Create a URL for the downloaded file
+						var url = window.URL.createObjectURL(response);
+
+						// Open the file in a new tab
+						window.open(url);
+					}
+				});
+			});
+		});
+    </script>
+</body>
+</html>
